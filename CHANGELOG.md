@@ -28,7 +28,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#20](https://github.com/zendframework/zend-expressive-authorization-acl/pull/20) adds support for PHP 7.3.
+- [zendframework/zend-expressive-authorization-acl#20](https://github.com/zendframework/zend-expressive-authorization-acl/pull/20) adds support for PHP 7.3.
 
 ### Changed
 
@@ -50,12 +50,12 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#16](https://github.com/zendframework/zend-expressive-authorization-acl/pull/16) adds documentation; visit it at https://docs.zendframework.com/zend-expressive-authorization-acl
+- [zendframework/zend-expressive-authorization-acl#16](https://github.com/zendframework/zend-expressive-authorization-acl/pull/16) adds documentation; visit it at https://docs.mezzio.dev/mezzio-authorization-acl
 
 ### Changed
 
-- [#16](https://github.com/zendframework/zend-expressive-authorization-acl/pull/16) changes the top-level configuration key expected from `authorization` to
-  `zend-expressive-authorization-acl`. If you were on a pre-release version, you will need to alter your configuration.
+- [zendframework/zend-expressive-authorization-acl#16](https://github.com/zendframework/zend-expressive-authorization-acl/pull/16) changes the top-level configuration key expected from `authorization` to
+  `mezzio-authorization-acl`. If you were on a pre-release version, you will need to alter your configuration.
 
 ### Deprecated
 
@@ -77,9 +77,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Changed
 
-- Locks zend-expressive-authorization to the 0.4.0 series.
+- Locks mezzio-authorization to the 0.4.0 series.
 
-- Updates the zend-expressive-router constraint to `^3.0`.
+- Updates the mezzio-router constraint to `^3.0`.
 
 ### Deprecated
 
@@ -97,9 +97,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#13](https://github.com/zendframework/zend-expressive-authorization-acl/pull/13)
-  adds support for alpha releases of zend-expressive-authorization,
-  zend-expressive-router, and any of their dependencies.
+- [zendframework/zend-expressive-authorization-acl#13](https://github.com/zendframework/zend-expressive-authorization-acl/pull/13)
+  adds support for alpha releases of mezzio-authorization,
+  mezzio-router, and any of their dependencies.
 
 ### Changed
 
@@ -133,9 +133,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#12](https://github.com/zendframework/zend-expressive-authorization-acl/pull/12)
+- [zendframework/zend-expressive-authorization-acl#12](https://github.com/zendframework/zend-expressive-authorization-acl/pull/12)
   removes all exceptions from the package, in favor of using exceptions defined
-  in zend-expressive-authorization.
+  in mezzio-authorization.
 
 ### Fixed
 
@@ -145,8 +145,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#10](https://github.com/zendframework/zend-expressive-authorization-acl/pull/10)
-  adds support for the 1.0.0-dev branch of zend-expressive-authorization.
+- [zendframework/zend-expressive-authorization-acl#10](https://github.com/zendframework/zend-expressive-authorization-acl/pull/10)
+  adds support for the 1.0.0-dev branch of mezzio-authorization.
 
 ### Changed
 
@@ -168,7 +168,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Adds support for zend-expressive-authorization 0.2 and 0.3 versions.
+- Adds support for mezzio-authorization 0.2 and 0.3 versions.
 
 ### Changed
 

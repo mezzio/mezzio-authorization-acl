@@ -1,7 +1,7 @@
 # Introduction
 
 This component provides [Access Control List](https://en.wikipedia.org/wiki/Access_control_list)
-(ACL) authorization abstraction for the [zend-expressive-authorization](https://github.com/zendframework/zend-expressive-authorization)
+(ACL) authorization abstraction for the [mezzio-authorization](https://github.com/mezzio/mezzio-authorization)
 library.
 
 ACLs are based around the idea of **resources** and **roles**:
@@ -29,7 +29,7 @@ You can provide your ACL definitions using a configuration file, as follows:
 // config/autoload/authorization.local.php
 return [
     // ...
-    'zend-expressive-authorization-acl' => [
+    'mezzio-authorization-acl' => [
         'roles' => [
             'editor'        => [],
             'contributor'   => ['editor'],
@@ -55,7 +55,7 @@ return [
 ];
 ```
 
-> We use this same example in the documentation of [zend-expressive-authorization-rbac](https://docs.zendframework.com/zend-expressive-authorization-rbac/v1/intro/#configure-an-rbac-system),
+> We use this same example in the documentation of [mezzio-authorization-rbac](https://docs.mezzio.dev/mezzio-authorization-rbac/v1/intro/#configure-an-rbac-system),
 > so that you can compare and contrast the two systems.
 
 The above configuration defines three roles for a blog web site:
@@ -66,7 +66,7 @@ direct capabilities, as well as any that role has inherited.
 
 > In ACL systems, parent roles inherit the permissions of their children.
 
-Within zend-expressive-authorization-acl, *resources* are mapped to the *route
+Within mezzio-authorization-acl, *resources* are mapped to the *route
 name* currently being requested.  By default, all resources are denied access,
 unless otherwise stated. In our example, we allow the route `admin.settings` for
 the *administrator*, the routes `admin.dashboard` and `admin.posts` for the
@@ -82,7 +82,7 @@ For instance, you can deny access to the route `admin.dashboard` by the
 ```php
 return [
     // ...
-    'zend-expressive-authorization-acl' => [
+    'mezzio-authorization-acl' => [
         // previous configuration array
         'deny' => [
             'administrator' => ['admin.dashboard']
@@ -94,11 +94,11 @@ return [
 The usage of `allow` and `deny` can help to configure complex permission
 scenarios, including or excluding specific authorizations.
 
-As noted earlier, zend-expressive-authorization-acl uses the current route name
+As noted earlier, mezzio-authorization-acl uses the current route name
 to determine the resource. If you want to change the permissions type and the
 logic for authorization, you will need to provide a custom implementation of
-[`Zend\Expressive\Authorization\AuthorizationInterface`](https://github.com/zendframework/zend-expressive-authorization/blob/master/src/AuthorizationInterface.php).
+[`Mezzio\Authorization\AuthorizationInterface`](https://github.com/mezzio/mezzio-authorization/blob/master/src/AuthorizationInterface.php).
 
-> zend-expressive-authorization-acl uses [zend-permissions-acl](https://github.com/zendframework/zend-permissions-acl)
+> mezzio-authorization-acl uses [laminas-permissions-acl](https://github.com/laminas/laminas-permissions-acl)
 > to implement its ACL system. For more information, we suggest reading the
-> [zend-acl documentation](https://docs.zendframework.com/zend-permissions-acl/).
+> [laminas-acl documentation](https://docs.laminas.dev/laminas-permissions-acl/).
