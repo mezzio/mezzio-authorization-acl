@@ -1,3 +1,3 @@
-# zend-expressive-authorization-acl
+# mezzio-authorization-acl
 
 This component provides ...
