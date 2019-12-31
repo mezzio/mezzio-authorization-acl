@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-expressive-authorization-acl for the canonical source repository
- * @copyright Copyright (c) 2017-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-expressive-authorization-acl/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/mezzio/mezzio-authorization-acl for the canonical source repository
+ * @copyright https://github.com/mezzio/mezzio-authorization-acl/blob/master/COPYRIGHT.md
+ * @license   https://github.com/mezzio/mezzio-authorization-acl/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
 
-namespace ZendTest\Expressive\Authorization\Acl;
+namespace MezzioTest\Authorization\Acl;
 
+use Laminas\ServiceManager\ServiceManager;
+use Mezzio\Authorization\Acl\ConfigProvider;
+use Mezzio\Authorization\Acl\LaminasAcl;
 use PHPUnit\Framework\TestCase;
-use Zend\Expressive\Authorization\Acl\ConfigProvider;
-use Zend\Expressive\Authorization\Acl\ZendAcl;
-use Zend\ServiceManager\ServiceManager;
 
 use function array_merge_recursive;
 use function file_get_contents;
@@ -47,7 +48,7 @@ class ConfigProviderTest extends TestCase
 
         $factories = $config['dependencies']['factories'];
         $this->assertInternalType('array', $factories);
-        $this->assertArrayHasKey(ZendAcl::class, $factories);
+        $this->assertArrayHasKey(LaminasAcl::class, $factories);
     }
 
     public function testServicesDefinedInConfigProvider()
@@ -59,14 +60,14 @@ class ConfigProviderTest extends TestCase
             true
         );
         foreach ($json['packages'] as $package) {
-            if (isset($package['extra']['zf']['config-provider'])) {
-                $configProvider = new $package['extra']['zf']['config-provider']();
+            if (isset($package['extra']['laminas']['config-provider'])) {
+                $configProvider = new $package['extra']['laminas']['config-provider']();
                 $config = array_merge_recursive($config, $configProvider());
             }
         }
 
         $config['dependencies']['services']['config'] = [
-            'zend-expressive-authorization-acl' => ['roles' => [], 'resources' => []],
+            'mezzio-authorization-acl' => ['roles' => [], 'resources' => []],
         ];
         $container = $this->getContainer($config['dependencies']);
 
