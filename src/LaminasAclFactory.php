@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-expressive-authorization-acl for the canonical source repository
- * @copyright Copyright (c) 2017 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-expressive-authorization-acl/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/mezzio/mezzio-authorization-acl for the canonical source repository
+ * @copyright https://github.com/mezzio/mezzio-authorization-acl/blob/master/COPYRIGHT.md
+ * @license   https://github.com/mezzio/mezzio-authorization-acl/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Expressive\Authorization\Acl;
+namespace Mezzio\Authorization\Acl;
 
+use Laminas\Permissions\Acl\Acl;
+use Laminas\Permissions\Acl\Exception\ExceptionInterface as AclExceptionInterface;
+use Mezzio\Authorization\AuthorizationInterface;
 use Psr\Container\ContainerInterface;
-use Zend\Expressive\Authorization\AuthorizationInterface;
-use Zend\Permissions\Acl\Acl;
-use Zend\Permissions\Acl\Exception\ExceptionInterface as AclExceptionInterface;
 
-class ZendAclFactory
+class LaminasAclFactory
 {
     /**
      * @throws Exception\InvalidConfigException
@@ -27,12 +28,12 @@ class ZendAclFactory
         }
         if (! isset($config['roles'])) {
             throw new Exception\InvalidConfigException(
-                'No authorization roles configured for ZendAcl'
+                'No authorization roles configured for LaminasAcl'
             );
         }
         if (! isset($config['resources'])) {
             throw new Exception\InvalidConfigException(
-                'No authorization resources configured for ZendAcl'
+                'No authorization resources configured for LaminasAcl'
             );
         }
 
@@ -43,7 +44,7 @@ class ZendAclFactory
         $this->injectPermissions($acl, $config['allow'] ?? [], 'allow');
         $this->injectPermissions($acl, $config['deny'] ?? [], 'deny');
 
-        return new ZendAcl($acl);
+        return new LaminasAcl($acl);
     }
 
     /**
