@@ -1,22 +1,23 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-expressive-authorization-acl for the canonical source repository
- * @copyright Copyright (c) 2017-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-expressive-authorization-acl/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/mezzio/mezzio-authorization-acl for the canonical source repository
+ * @copyright https://github.com/mezzio/mezzio-authorization-acl/blob/master/COPYRIGHT.md
+ * @license   https://github.com/mezzio/mezzio-authorization-acl/blob/master/LICENSE.md New BSD License
  */
 
 declare(strict_types=1);
 
-namespace ZendTest\Expressive\Authorization\Acl;
+namespace MezzioTest\Authorization\Acl;
 
+use Mezzio\Authorization\Acl\LaminasAcl;
+use Mezzio\Authorization\Acl\LaminasAclFactory;
+use Mezzio\Authorization\Exception;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Container\ContainerInterface;
-use Zend\Expressive\Authorization\Acl\ZendAcl;
-use Zend\Expressive\Authorization\Acl\ZendAclFactory;
-use Zend\Expressive\Authorization\Exception;
 
-class ZendAclFactoryTest extends TestCase
+class LaminasAclFactoryTest extends TestCase
 {
     /** @var ContainerInterface|ObjectProphecy */
     private $container;
@@ -30,17 +31,17 @@ class ZendAclFactoryTest extends TestCase
     {
         $this->container->get('config')->willReturn([]);
 
-        $factory = new ZendAclFactory();
+        $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
         $factory($this->container->reveal());
     }
 
-    public function testFactoryWithoutZendAclConfig()
+    public function testFactoryWithoutLaminasAclConfig()
     {
         $this->container->get('config')->willReturn(['authorization' => []]);
 
-        $factory = new ZendAclFactory();
+        $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
         $factory($this->container->reveal());
@@ -54,7 +55,7 @@ class ZendAclFactoryTest extends TestCase
             ],
         ]);
 
-        $factory = new ZendAclFactory();
+        $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
         $factory($this->container->reveal());
@@ -69,9 +70,9 @@ class ZendAclFactoryTest extends TestCase
             ],
         ]);
 
-        $factory = new ZendAclFactory();
-        $zendAcl = $factory($this->container->reveal());
-        $this->assertInstanceOf(ZendAcl::class, $zendAcl);
+        $factory = new LaminasAclFactory();
+        $laminasAcl = $factory($this->container->reveal());
+        $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
 
     public function testFactoryWithoutAllowOrDeny()
@@ -93,9 +94,9 @@ class ZendAclFactoryTest extends TestCase
         ];
         $this->container->get('config')->willReturn($config);
 
-        $factory = new ZendAclFactory();
-        $zendAcl = $factory($this->container->reveal());
-        $this->assertInstanceOf(ZendAcl::class, $zendAcl);
+        $factory = new LaminasAclFactory();
+        $laminasAcl = $factory($this->container->reveal());
+        $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
 
     public function testFactoryWithInvalidRole()
@@ -109,7 +110,7 @@ class ZendAclFactoryTest extends TestCase
             ],
         ]);
 
-        $factory = new ZendAclFactory();
+        $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
         $factory($this->container->reveal());
@@ -132,7 +133,7 @@ class ZendAclFactoryTest extends TestCase
             ],
         ]);
 
-        $factory = new ZendAclFactory();
+        $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
         $factory($this->container->reveal());

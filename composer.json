@@ -1,50 +1,23 @@
 {
-    "name": "zendframework/zend-expressive-authorization-acl",
-    "description": "zend-permissions-acl adapter for zend-expressive-authorization",
+    "name": "mezzio/mezzio-authorization-acl",
+    "description": "laminas-permissions-acl adapter for mezzio-authorization",
     "license": "BSD-3-Clause",
     "keywords": [
+        "laminas",
+        "mezzio",
         "acl",
         "authorization",
-        "expressive",
         "middleware",
-        "psr-7",
-        "zf",
-        "zendframework",
-        "zend-expressive"
+        "psr-7"
     ],
+    "homepage": "https://mezzio.dev",
     "support": {
-        "docs": "https://docs.zendframework.com/zend-expressive-authorization-acl/",
-        "issues": "https://github.com/zendframework/zend-expressive-authorization-acl/issues",
-        "source": "https://github.com/zendframework/zend-expressive-authorization-acl",
-        "rss": "https://github.com/zendframework/zend-expressive-authorization-acl/releases.atom",
-        "slack": "https://zendframework-slack.herokuapp.com",
-        "forum": "https://discourse.zendframework.com/c/questions/expressive"
-    },
-    "require": {
-        "php": "^7.1",
-        "psr/container": "^1.0",
-        "psr/http-message": "^1.0.1",
-        "zendframework/zend-expressive-authorization": "^0.4",
-        "zendframework/zend-expressive-router": "^3.0",
-        "zendframework/zend-permissions-acl": "^2.6"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7.0.2",
-        "zendframework/zend-coding-standard": "~1.0.0",
-        "zendframework/zend-servicemanager": "^3.3"
-    },
-    "conflict": {
-        "container-interop/container-interop": "<1.2.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Zend\\Expressive\\Authorization\\Acl\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZendTest\\Expressive\\Authorization\\Acl\\": "test/"
-        }
+        "docs": "https://docs.mezzio.dev/mezzio-authorization-acl/",
+        "issues": "https://github.com/mezzio/mezzio-authorization-acl/issues",
+        "source": "https://github.com/mezzio/mezzio-authorization-acl",
+        "rss": "https://github.com/mezzio/mezzio-authorization-acl/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
     "config": {
         "sort-packages": true
@@ -53,8 +26,35 @@
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         },
-        "zf": {
-            "config-provider": "Zend\\Expressive\\Authorization\\Acl\\ConfigProvider"
+        "laminas": {
+            "config-provider": "Mezzio\\Authorization\\Acl\\ConfigProvider"
+        }
+    },
+    "require": {
+        "php": "^7.1",
+        "laminas/laminas-permissions-acl": "^2.6",
+        "laminas/laminas-zendframework-bridge": "^1.0",
+        "mezzio/mezzio-authorization": "^0.4",
+        "mezzio/mezzio-router": "^3.0",
+        "psr/container": "^1.0",
+        "psr/http-message": "^1.0.1"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "laminas/laminas-servicemanager": "^3.3",
+        "phpunit/phpunit": "^7.0.2"
+    },
+    "conflict": {
+        "container-interop/container-interop": "<1.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mezzio\\Authorization\\Acl\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MezzioTest\\Authorization\\Acl\\": "test/"
         }
     },
     "scripts": {
@@ -66,5 +66,8 @@
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zendframework/zend-expressive-authorization-acl": "self.version"
     }
 }
