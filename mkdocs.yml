@@ -1,8 +1,11 @@
 docs_dir: docs/book
 site_dir: docs/html
 nav:
-    - Home: index.md
-    - Introduction: v1/intro.md
+    - { Home: index.md }
+    - { Introduction: v1/intro.md }
 site_name: mezzio-authorization-acl
 site_description: 'ACL permission adapter for mezzio-authorization.'
 repo_url: 'https://github.com/mezzio/mezzio-authorization-acl'
+extra:
+    project: Mezzio
+    project_url: 'https://docs.mezzio.dev'
