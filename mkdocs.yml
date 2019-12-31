@@ -1,8 +1,8 @@
 docs_dir: docs/book
 site_dir: docs/html
-pages:
+nav:
     - Home: index.md
     - Introduction: v1/intro.md
-site_name: zend-expressive-authorization-acl
-site_description: 'ACL permission adapter for zend-expressive-authorization.'
-repo_url: 'https://github.com/zendframework/zend-expressive-authorization-acl'
+site_name: mezzio-authorization-acl
+site_description: 'ACL permission adapter for mezzio-authorization.'
+repo_url: 'https://github.com/mezzio/mezzio-authorization-acl'
