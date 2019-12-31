@@ -18,9 +18,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#12](https://github.com/zendframework/zend-expressive-authorization-acl/pull/12)
+- [zendframework/zend-expressive-authorization-acl#12](https://github.com/zendframework/zend-expressive-authorization-acl/pull/12)
   removes all exceptions from the package, in favor of using exceptions defined
-  in zend-expressive-authorization.
+  in mezzio-authorization.
 
 ### Fixed
 
@@ -30,8 +30,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#10](https://github.com/zendframework/zend-expressive-authorization-acl/pull/10)
-  adds support for the 1.0.0-dev branch of zend-expressive-authorization.
+- [zendframework/zend-expressive-authorization-acl#10](https://github.com/zendframework/zend-expressive-authorization-acl/pull/10)
+  adds support for the 1.0.0-dev branch of mezzio-authorization.
 
 ### Changed
 
@@ -53,7 +53,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Adds support for zend-expressive-authorization 0.2 and 0.3 versions.
+- Adds support for mezzio-authorization 0.2 and 0.3 versions.
 
 ### Changed
 

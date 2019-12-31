@@ -1,7 +1,7 @@
-# zend-expressive-authorization-acl
+# mezzio-authorization-acl
 
-[![Build Status](https://secure.travis-ci.org/zendframework/zend-expressive-authorization-acl.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-expressive-authorization-acl)
-[![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-expressive-authorization-acl/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-expressive-authorization-acl?branch=master)
+[![Build Status](https://travis-ci.org/mezzio/mezzio-authorization-acl.svg?branch=master)](https://travis-ci.org/mezzio/mezzio-authorization-acl)
+[![Coverage Status](https://coveralls.io/repos/github/mezzio/mezzio-authorization-acl/badge.svg?branch=master)](https://coveralls.io/github/mezzio/mezzio-authorization-acl?branch=master)
 
 This library provides ... 
 
@@ -10,15 +10,15 @@ This library provides ...
 Run the following to install this library:
 
 ```bash
-$ composer require zendframework/zend-expressive-authorization-acl
+$ composer require mezzio/mezzio-authorization-acl
 ```
 
 ## Documentation
 
-Documentation is [in the doc tree](docs/book/), and can be compiled using [mkdocs](http://www.mkdocs.org):
+Documentation is [in the doc tree](docs/book/), and can be compiled using [mkdocs](https://www.mkdocs.org):
 
 ```bash
 $ mkdocs build
 ```
 
-You may also [browse the documentation online](https://docs.zendframework.com/zend-expressive-authorization-acl/).
+You may also [browse the documentation online](https://docs.mezzio.dev/mezzio-authorization-acl/).
