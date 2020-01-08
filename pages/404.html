@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ACL permission adapter for mezzio-authorization.">  
-    <link rel="canonical" href="https://docs.mezzio.dev/v1/intro/">
     <link rel="shortcut icon" href="/img/trademark-laminas-foundation-rgb.svg">
 
-    <title>Introduction - mezzio-authorization-acl - Laminas Docs</title>
+    <title>mezzio-authorization-acl - Laminas Docs</title>
 
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -20,7 +19,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../../img/laminas-foundation-white.svg" height="28" alt="Laminas">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -59,7 +58,7 @@
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="../..">mezzio-authorization-acl</a>
+            <a href="../.">mezzio-authorization-acl</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -73,8 +72,8 @@
                     
                     
                         
-                            <li class="subnavigation__list-item subnavigation__list-item--active">
-                                <a href="./" class="subnavigation__link">Introduction</a>
+                            <li class="subnavigation__list-item ">
+                                <a href="../v1/intro/" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     
@@ -139,176 +138,21 @@
         <div class="row">
             <div class="col-md-2 col-sm-12">
                 
-    
-
-    
-    
-        <div class="toc">
-            <h6 class="toc__headline">On this page</h6>
-            <ul class="toc__list">
-                
-                    <li class="toc__entry">
-                        <a href="#configure-an-acl-system" class="toc__link">Configure an ACL system</a>
-                    </li>
-                
-            </ul>
-        </div>
-    
-
             </div>
             <div class="col-md-7 col-sm-12 content" role="main" data-spy="scroll" data-target=".toc">
                 
-                    <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        
-            <li class="breadcrumb-item"><a href="">Overview</a></li>
 
-            
-                <li class="breadcrumb-item"><a href="../..">mezzio-authorization-acl</a></li>
-
-                
-
-                <li class="breadcrumb-item active" aria-current="page">Introduction</li>
-            
-        
-    </ol>
-</nav>
-
-
-
-
-
-
-    
-    
-
-    <h1 id="introduction">Introduction</h1>
-<p>This component provides <a href="https://en.wikipedia.org/wiki/Access_control_list">Access Control List</a>
-(ACL) authorization abstraction for the <a href="https://github.com/mezzio/mezzio-authorization">mezzio-authorization</a>
-library.</p>
-<p>ACLs are based around the idea of <strong>resources</strong> and <strong>roles</strong>:</p>
-<ul>
-<li>a <strong>resource</strong> is an object to which access is controlled;</li>
-<li>a <strong>role</strong> is an object that may request access to a resource.</li>
-</ul>
-<p>Put simply, roles request access to resources. For example, if a parking
-attendant requests access to a car, then the parking attendant is the requesting
-role, and the car is the resource, since access to the car may not be granted to
-everyone.</p>
-<p>Through the specification and use of an ACL, an application may control how
-roles are granted access to resources. For instance, in a web application a
-<em>resource</em> can be a page, a portion of a view, a route, etc. A <em>role</em> can vary
-based on the context in which the request is made: it could be the client
-identity sent with an API request; whether the users is an <em>anonymous guest</em> or a
-<em>registered user</em> of the site; etc.</p>
-<h2 id="configure-an-acl-system">Configure an ACL system</h2>
-<p>You can provide your ACL definitions using a configuration file, as follows:</p>
-<pre class=codehilite><code class=language-php>// config/autoload/authorization.local.php
-return [
-    // ...
-    'mezzio-authorization-acl' =&gt; [
-        'roles' =&gt; [
-            'editor'        =&gt; [],
-            'contributor'   =&gt; ['editor'],
-            'administrator' =&gt; ['contributor'],
-        ],
-        'resources' =&gt; [
-            'admin.dashboard',
-            'admin.posts',
-            'admin.publish',
-            'admin.settings'
-        ],
-        'allow' =&gt; [
-            'administrator' =&gt; ['admin.settings'],
-            'contributor' =&gt; [
-                'admin.dashboard',
-                'admin.posts',
-            ],
-            'editor' =&gt; [
-                'admin.publish'
-            ]
-        ]
-    ]
-];</code></pre>
+<h1 class="content__title">404</h1>
 <blockquote>
-<p>We use this same example in the documentation of <a href="https://docs.mezzio.dev/mezzio-authorization-rbac/v1/intro/#configure-an-rbac-system">mezzio-authorization-rbac</a>,
-so that you can compare and contrast the two systems.</p>
-</blockquote>
-<p>The above configuration defines three roles for a blog web site:
-an <em>editor</em>, a <em>contributor</em>, and an <em>administrator</em>. The <em>contributor</em> role has
-the <em>editor</em> role as a child role, meaning it inherits its capabilities. The
-<em>administrator</em> role has the <em>contributor</em> role as a child, inheriting both its
-direct capabilities, as well as any that role has inherited.</p>
-<blockquote>
-<p>In ACL systems, parent roles inherit the permissions of their children.</p>
-</blockquote>
-<p>Within mezzio-authorization-acl, <em>resources</em> are mapped to the <em>route
-name</em> currently being requested.  By default, all resources are denied access,
-unless otherwise stated. In our example, we allow the route <code>admin.settings</code> for
-the <em>administrator</em>, the routes <code>admin.dashboard</code> and <code>admin.posts</code> for the
-<em>contributor</em>, and the route <code>admin.publish</code> for the <em>editor</em>. Because the
-<em>contributor</em> inherits permissions from <em>editor</em>, they will also have access to
-the <code>admin.publish</code> route. Because the <em>administrator</em> inherits permissions from
-<em>contributor</em>, they will have access to <em>all</em> routes.</p>
-<p>You can also deny a resource using the <code>deny</code> key in the configuration file.
-For instance, you can deny access to the route <code>admin.dashboard</code> by the
-<em>administrator</em> by adding the following configuration in the previous example:</p>
-<pre class=codehilite><code class=language-php>return [
-    // ...
-    'mezzio-authorization-acl' =&gt; [
-        // previous configuration array
-        'deny' =&gt; [
-            'administrator' =&gt; ['admin.dashboard']
-        ]
-    ]
-]</code></pre>
-<p>The usage of <code>allow</code> and <code>deny</code> can help to configure complex permission
-scenarios, including or excluding specific authorizations.</p>
-<p>As noted earlier, mezzio-authorization-acl uses the current route name
-to determine the resource. If you want to change the permissions type and the
-logic for authorization, you will need to provide a custom implementation of
-<a href="https://github.com/mezzio/mezzio-authorization/blob/master/src/AuthorizationInterface.php"><code>Mezzio\Authorization\AuthorizationInterface</code></a>.</p>
-<blockquote>
-<p>mezzio-authorization-acl uses <a href="https://github.com/laminas/laminas-permissions-acl">laminas-permissions-acl</a>
-to implement its ACL system. For more information, we suggest reading the
-<a href="https://docs.laminas.dev/laminas-permissions-acl/">laminas-acl documentation</a>.</p>
+    <h3>Something went wrong!</h3>
+    <p>
+        We're sorry, but the page you are looking for does not exist.
+    </p>
 </blockquote>
 
+<a href="../." class="btn btn-default" role="button">Go to homepage</a>
 
 
-
-    <nav>
-    <ul class="page-nav hidden-print">
-
-        
-        <li class="page-nav__item">
-            
-                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../..">
-                    <i class="fa fa-chevron-left"></i> Previous
-                </a>
-            
-        </li>
-
-        
-        <li class="page-nav__item">
-            
-        </li>
-    </ul>
-</nav>
-
-
-
-
-    <div class="help-wanted">
-        <p>
-            Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/mezzio/mezzio-authorization-acl/edit/master/docs/book/v1/intro.md" target="_blank" class="help-wanted__link">
-                Edit this page on GitHub!
-            </a>
-        </p>
-    </div>
-
-                
             </div>
             <div class="col-md-3 col-sm-12 sidebar">
                 
@@ -323,7 +167,7 @@ to implement its ACL system. For more information, we suggest reading the
                     
     <div class="subnavigation hidden-print">
         <h4 class="subnavigation__title">
-            <a href="../..">mezzio-authorization-acl</a>
+            <a href="../.">mezzio-authorization-acl</a>
         </h4>
 
         <h5 class="subnavigation__subtitle">Table of Contents</h5>
@@ -337,8 +181,8 @@ to implement its ACL system. For more information, we suggest reading the
                     
                     
                         
-                            <li class="subnavigation__list-item subnavigation__list-item--active">
-                                <a href="./" class="subnavigation__link">Introduction</a>
+                            <li class="subnavigation__list-item ">
+                                <a href="../v1/intro/" class="subnavigation__link">Introduction</a>
                             </li>
                         
                     
@@ -425,12 +269,12 @@ to implement its ACL system. For more information, we suggest reading the
 </footer>
 
     <script>
-        let base_url = '../..',
+        let base_url = '..',
             project  = "mezzio",
             siteName = 'mezzio-authorization-acl';
     </script>
     <script src="/js/scripts.js"></script>
-        <script src="../../search/main.js"></script>
+        <script src="../search/main.js"></script>
 
     
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
