@@ -1,6 +1,6 @@
 # mezzio-authorization-acl
 
-[![Build Status](https://travis-ci.org/mezzio/mezzio-authorization-acl.svg?branch=master)](https://travis-ci.org/mezzio/mezzio-authorization-acl)
+[![Build Status](https://travis-ci.com/mezzio/mezzio-authorization-acl.svg?branch=master)](https://travis-ci.com/mezzio/mezzio-authorization-acl)
 [![Coverage Status](https://coveralls.io/repos/github/mezzio/mezzio-authorization-acl/badge.svg?branch=master)](https://coveralls.io/github/mezzio/mezzio-authorization-acl?branch=master)
 
 This library provides ... 
