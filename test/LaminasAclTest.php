@@ -13,6 +13,7 @@ namespace MezzioTest\Authorization\Acl;
 use Laminas\Permissions\Acl\Acl;
 use Mezzio\Authorization\Acl\LaminasAcl;
 use Mezzio\Authorization\Exception;
+use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -47,12 +48,10 @@ class LaminasAclTest extends TestCase
 
     public function testIsGranted()
     {
-        $routeResult = $this->prophesize(RouteResult::class);
-        $routeResult->getMatchedRouteName()->willReturn('home');
+        $routeResult = $this->getSuccessRouteResult('home');
 
         $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getAttribute(RouteResult::class, false)
-                ->willReturn($routeResult->reveal());
+        $request->getAttribute(RouteResult::class, false)->willReturn($routeResult);
 
         $this->acl->isAllowed('foo', 'home')->willReturn(true);
         $laminasAcl = new LaminasAcl($this->acl->reveal());
@@ -62,16 +61,40 @@ class LaminasAclTest extends TestCase
 
     public function testIsNotGranted()
     {
-        $routeResult = $this->prophesize(RouteResult::class);
-        $routeResult->getMatchedRouteName()->willReturn('home');
+        $routeResult = $this->getSuccessRouteResult('home');
 
         $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getAttribute(RouteResult::class, false)
-                ->willReturn($routeResult->reveal());
+        $request->getAttribute(RouteResult::class, false)->willReturn($routeResult);
 
         $this->acl->isAllowed('foo', 'home')->willReturn(false);
         $laminasAcl = new LaminasAcl($this->acl->reveal());
 
         $this->assertFalse($laminasAcl->isGranted('foo', $request->reveal()));
+    }
+
+    public function testIsGrantedWithFailedRouting()
+    {
+        $routeResult = $this->getFailureRouteResult(Route::HTTP_METHOD_ANY);
+
+        $request = $this->prophesize(ServerRequestInterface::class);
+        $request->getAttribute(RouteResult::class, false)->willReturn($routeResult);
+
+        $laminasAcl = new LaminasAcl($this->acl->reveal());
+
+        $result = $laminasAcl->isGranted('foo', $request->reveal());
+        $this->assertTrue($result);
+    }
+
+    private function getSuccessRouteResult(string $routeName): RouteResult
+    {
+        $route = $this->prophesize(Route::class);
+        $route->getName()->willReturn($routeName);
+
+        return RouteResult::fromRoute($route->reveal());
+    }
+
+    private function getFailureRouteResult(?array $methods): RouteResult
+    {
+        return RouteResult::fromRouteFailure($methods);
     }
 }
