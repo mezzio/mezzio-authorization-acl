@@ -44,6 +44,12 @@ class LaminasAcl implements AuthorizationInterface
                 RouteResult::class
             ));
         }
+
+        // No matching route. Everyone can access.
+        if ($routeResult->isFailure()) {
+            return true;
+        }
+
         $routeName = $routeResult->getMatchedRouteName();
 
         return $this->acl->isAllowed($role, $routeName);
