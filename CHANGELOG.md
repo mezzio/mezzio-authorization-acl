@@ -44,7 +44,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Fixed `replace` version constraint in composer.json so repository can be used as replacement of `zendframework/zend-expressive-authorization:^1.0.1`.
+- Fixed `replace` version constraint in composer.json so repository can be used as replacement of `zendframework/zend-expressive-authorization-acl:^1.0.1`.
 
 ## 1.0.2 - 2020-01-24
 
