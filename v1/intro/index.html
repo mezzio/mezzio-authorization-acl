@@ -262,7 +262,7 @@ identity sent with an API request; whether the users is an <em>anonymous guest</
 <em>registered user</em> of the site; etc.</p>
 <h2 id="configure-an-acl-system">Configure an ACL system</h2>
 <p>You can provide your ACL definitions using a configuration file, as follows:</p>
-<pre class=codehilite><code class=language-php>// config/autoload/authorization.local.php
+<pre class="highlight"><code class="language-php">// config/autoload/authorization.local.php
 return [
     // ...
     'mezzio-authorization-acl' =&gt; [
@@ -289,6 +289,7 @@ return [
         ]
     ]
 ];</code></pre>
+
 <blockquote>
 <p>We use this same example in the documentation of <a href="https://docs.mezzio.dev/mezzio-authorization-rbac/v1/intro/#configure-an-rbac-system">mezzio-authorization-rbac</a>,
 so that you can compare and contrast the two systems.</p>
@@ -312,7 +313,7 @@ the <code>admin.publish</code> route. Because the <em>administrator</em> inherit
 <p>You can also deny a resource using the <code>deny</code> key in the configuration file.
 For instance, you can deny access to the route <code>admin.dashboard</code> by the
 <em>administrator</em> by adding the following configuration in the previous example:</p>
-<pre class=codehilite><code class=language-php>return [
+<pre class="highlight"><code class="language-php">return [
     // ...
     'mezzio-authorization-acl' =&gt; [
         // previous configuration array
@@ -321,6 +322,7 @@ For instance, you can deny access to the route <code>admin.dashboard</code> by t
         ]
     ]
 ]</code></pre>
+
 <p>The usage of <code>allow</code> and <code>deny</code> can help to configure complex permission
 scenarios, including or excluding specific authorizations.</p>
 <p>As noted earlier, mezzio-authorization-acl uses the current route name
