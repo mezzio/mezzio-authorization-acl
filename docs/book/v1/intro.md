@@ -31,25 +31,27 @@ return [
     // ...
     'mezzio-authorization-acl' => [
         'roles' => [
-            'editor'        => [],
+            'administrator' => [],
+            'editor'        => ['administrator'],
             'contributor'   => ['editor'],
-            'administrator' => ['contributor'],
         ],
         'resources' => [
             'admin.dashboard',
             'admin.posts',
             'admin.publish',
-            'admin.settings'
+            'admin.settings',
         ],
         'allow' => [
-            'administrator' => ['admin.settings'],
             'contributor' => [
                 'admin.dashboard',
                 'admin.posts',
             ],
             'editor' => [
                 'admin.publish'
-            ]
+            ],
+            'administrator' => [
+                'admin.settings',
+            ],
         ]
     ]
 ];
