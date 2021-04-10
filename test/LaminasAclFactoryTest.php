@@ -14,11 +14,14 @@ use Mezzio\Authorization\Acl\LaminasAcl;
 use Mezzio\Authorization\Acl\LaminasAclFactory;
 use Mezzio\Authorization\Exception;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Container\ContainerInterface;
 
 class LaminasAclFactoryTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var ContainerInterface|ObjectProphecy */
     private $container;
 
