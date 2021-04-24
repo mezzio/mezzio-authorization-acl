@@ -1,7 +1,6 @@
 # mezzio-authorization-acl
 
-[![Build Status](https://travis-ci.com/mezzio/mezzio-authorization-acl.svg?branch=master)](https://travis-ci.com/mezzio/mezzio-authorization-acl)
-[![Coverage Status](https://coveralls.io/repos/github/mezzio/mezzio-authorization-acl/badge.svg?branch=master)](https://coveralls.io/github/mezzio/mezzio-authorization-acl?branch=master)
+[![Build Status](https://github.com/mezzio/mezzio-authorization-acl/workflows/continuous-integration.yml/badge.svg)](https://github.com/mezzio/mezzio-authorization-acl/actions/workflows/continuous-integration.yml)
 
 This component provides Access Control List (ACL) authorization abstraction for the mezzio-authorization library.
 
