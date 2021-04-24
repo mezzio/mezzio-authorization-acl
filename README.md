@@ -1,6 +1,6 @@
 # mezzio-authorization-acl
 
-[![Build Status](https://github.com/mezzio/mezzio-authorization-acl/workflows/continuous-integration.yml/badge.svg)](https://github.com/mezzio/mezzio-authorization-acl/actions/workflows/continuous-integration.yml)
+[![Build Status](https://github.com/mezzio/mezzio-authorization-acl/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/mezzio/mezzio-authorization-acl/actions/workflows/continuous-integration.yml)
 
 This component provides Access Control List (ACL) authorization abstraction for the mezzio-authorization library.
 
