@@ -16,11 +16,14 @@ use Mezzio\Authorization\Exception;
 use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ServerRequestInterface;
 
 class LaminasAclTest extends TestCase
 {
+    use ProphecyTrait;
+
     /** @var Acl|ObjectProphecy */
     private $acl;
 

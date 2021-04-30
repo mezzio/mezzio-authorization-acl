@@ -88,7 +88,7 @@ return [
             'administrator' => ['admin.dashboard']
         ]
     ]
-]
+];
 ```
 
 The usage of `allow` and `deny` can help to configure complex permission
