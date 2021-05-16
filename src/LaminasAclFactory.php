@@ -18,7 +18,7 @@ class LaminasAclFactory
     /**
      * @throws Exception\InvalidConfigException
      */
-    public function __invoke(ContainerInterface $container) : AuthorizationInterface
+    public function __invoke(ContainerInterface $container): AuthorizationInterface
     {
         $config = $container->get('config')['mezzio-authorization-acl'] ?? null;
         if (null === $config) {
@@ -50,7 +50,7 @@ class LaminasAclFactory
     /**
      * @throws Exception\InvalidConfigException
      */
-    private function injectRoles(Acl $acl, array $roles) : void
+    private function injectRoles(Acl $acl, array $roles): void
     {
         foreach ($roles as $role => $parents) {
             foreach ($parents as $parent) {
@@ -73,7 +73,7 @@ class LaminasAclFactory
     /**
      * @throws Exception\InvalidConfigException
      */
-    private function injectResources(Acl $acl, array $resources) : void
+    private function injectResources(Acl $acl, array $resources): void
     {
         foreach ($resources as $resource) {
             try {
@@ -87,7 +87,7 @@ class LaminasAclFactory
     /**
      * @throws Exception\InvalidConfigException
      */
-    private function injectPermissions(Acl $acl, array $permissions, string $type) : void
+    private function injectPermissions(Acl $acl, array $permissions, string $type): void
     {
         if (! in_array($type, ['allow', 'deny'], true)) {
             throw new Exception\InvalidConfigException(sprintf(

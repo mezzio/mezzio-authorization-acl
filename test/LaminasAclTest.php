@@ -21,7 +21,7 @@ class LaminasAclTest extends TestCase
     /** @var Acl|ObjectProphecy */
     private $acl;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->acl = $this->prophesize(Acl::class);
     }
