@@ -19,7 +19,7 @@ class LaminasAclFactoryTest extends TestCase
     /** @var ContainerInterface|ObjectProphecy */
     private $container;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->container = $this->prophesize(ContainerInterface::class);
     }
@@ -62,12 +62,12 @@ class LaminasAclFactoryTest extends TestCase
     {
         $this->container->get('config')->willReturn([
             'mezzio-authorization-acl' => [
-                'roles' => [],
+                'roles'     => [],
                 'resources' => [],
             ],
         ]);
 
-        $factory = new LaminasAclFactory();
+        $factory    = new LaminasAclFactory();
         $laminasAcl = $factory($this->container->reveal());
         $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
@@ -76,7 +76,7 @@ class LaminasAclFactoryTest extends TestCase
     {
         $config = [
             'mezzio-authorization-acl' => [
-                'roles' => [
+                'roles'     => [
                     'admini'      => [],
                     'editor'      => ['administrator'],
                     'contributor' => ['editor'],
@@ -91,7 +91,7 @@ class LaminasAclFactoryTest extends TestCase
         ];
         $this->container->get('config')->willReturn($config);
 
-        $factory = new LaminasAclFactory();
+        $factory    = new LaminasAclFactory();
         $laminasAcl = $factory($this->container->reveal());
         $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
@@ -100,7 +100,7 @@ class LaminasAclFactoryTest extends TestCase
     {
         $this->container->get('config')->willReturn([
             'mezzio-authorization-acl' => [
-                'roles' => [
+                'roles'       => [
                     1 => [],
                 ],
                 'permissions' => [],
@@ -117,14 +117,14 @@ class LaminasAclFactoryTest extends TestCase
     {
         $this->container->get('config')->willReturn([
             'mezzio-authorization-acl' => [
-                'roles' => [
+                'roles'     => [
                     'administrator' => [],
                 ],
                 'resources' => [
                     'admin.dashboard',
                     'admin.posts',
                 ],
-                'allow' => [
+                'allow'     => [
                     'editor' => ['admin.dashboard'],
                 ],
             ],

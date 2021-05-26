@@ -14,9 +14,7 @@ use function sprintf;
 
 class LaminasAcl implements AuthorizationInterface
 {
-    /**
-     * @var Acl
-     */
+    /** @var Acl */
     private $acl;
 
     public function __construct(Acl $acl)
@@ -29,7 +27,7 @@ class LaminasAcl implements AuthorizationInterface
      *
      * @throws Exception\RuntimeException
      */
-    public function isGranted(string $role, ServerRequestInterface $request) : bool
+    public function isGranted(string $role, ServerRequestInterface $request): bool
     {
         $routeResult = $request->getAttribute(RouteResult::class, false);
         if (false === $routeResult) {
