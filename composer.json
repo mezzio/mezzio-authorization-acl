@@ -28,9 +28,8 @@
         }
     },
     "require": {
-        "php": "^7.3 || ~8.0.0",
+        "php": "^7.3 || ~8.0.0 || ~8.1.0",
         "laminas/laminas-permissions-acl": "^2.6",
-        "laminas/laminas-zendframework-bridge": "^1.0",
         "mezzio/mezzio-authorization": "^1.0",
         "mezzio/mezzio-router": "^3.0",
         "psr/container": "^1.0",
@@ -45,7 +44,8 @@
     },
     "conflict": {
         "container-interop/container-interop": "<1.2.0",
-        "phpspec/prophecy": "<1.10.2"
+        "phpspec/prophecy": "<1.10.2",
+        "zendframework/zend-expressive-authorization-acl": "*"
     },
     "autoload": {
         "psr-4": {
@@ -66,8 +66,5 @@
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
-    },
-    "replace": {
-        "zendframework/zend-expressive-authorization-acl": "^1.0.1"
     }
 }
