@@ -46,7 +46,9 @@
         "laminas/laminas-servicemanager": "^3.10",
         "phpspec/prophecy": "^1.15",
         "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.5.11"
+        "phpunit/phpunit": "^9.5.11",
+        "psalm/plugin-phpunit": "^0.17.0",
+        "vimeo/psalm": "^4.24"
     },
     "conflict": {
         "container-interop/container-interop": "<1.2.0",
