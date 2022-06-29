@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.24.0@06dd975cb55d36af80f242561738f16c5f58264f">
+  <file src="src/ConfigProvider.php">
+    <MixedArrayOffset occurrences="1"/>
+    <UndefinedClass occurrences="1">
+      <code>ZendAcl</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/LaminasAcl.php">
+    <MixedArgument occurrences="1">
+      <code>$routeName</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="2">
+      <code>$routeName</code>
+      <code>$routeResult</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="2">
+      <code>getMatchedRouteName</code>
+      <code>isFailure</code>
+    </MixedMethodCall>
+  </file>
+  <file src="src/LaminasAclFactory.php">
+    <InvalidCatch occurrences="4"/>
+    <InvalidScalarArgument occurrences="4">
+      <code>$e-&gt;getCode()</code>
+      <code>$e-&gt;getCode()</code>
+      <code>$e-&gt;getCode()</code>
+      <code>$e-&gt;getCode()</code>
+    </InvalidScalarArgument>
+    <MixedArgument occurrences="8">
+      <code>$config['allow'] ?? []</code>
+      <code>$config['deny'] ?? []</code>
+      <code>$config['resources']</code>
+      <code>$config['roles']</code>
+      <code>$parent</code>
+      <code>$parent</code>
+      <code>$parents</code>
+      <code>$resource</code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$role</code>
+    </MixedArgumentTypeCoercion>
+    <MixedArrayAccess occurrences="4">
+      <code>$config['allow']</code>
+      <code>$config['deny']</code>
+      <code>$config['resources']</code>
+      <code>$config['roles']</code>
+    </MixedArrayAccess>
+    <MixedAssignment occurrences="5">
+      <code>$config</code>
+      <code>$parent</code>
+      <code>$parents</code>
+      <code>$resource</code>
+      <code>$resources</code>
+    </MixedAssignment>
+  </file>
+  <file src="test/ConfigProviderTest.php">
+    <InvalidFunctionCall occurrences="1">
+      <code>$configProvider()</code>
+    </InvalidFunctionCall>
+    <MissingReturnType occurrences="2">
+      <code>testReturnedArrayContainsDependencies</code>
+      <code>testServicesDefinedInConfigProvider</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="7">
+      <code>$configProvider()</code>
+      <code>$config['dependencies']</code>
+      <code>$factory</code>
+      <code>$name</code>
+      <code>$name</code>
+      <code>$name</code>
+      <code>$name</code>
+    </MixedArgument>
+    <MixedArgumentTypeCoercion occurrences="1">
+      <code>$dependencies</code>
+    </MixedArgumentTypeCoercion>
+    <MixedArrayAccess occurrences="2">
+      <code>$json['packages']</code>
+      <code>$package['extra']</code>
+    </MixedArrayAccess>
+    <MixedArrayAssignment occurrences="1">
+      <code>$config['dependencies']['services']</code>
+    </MixedArrayAssignment>
+    <MixedAssignment occurrences="4">
+      <code>$factory</code>
+      <code>$json</code>
+      <code>$name</code>
+      <code>$package</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="1">
+      <code>new $package['extra']['laminas']['config-provider']()</code>
+    </MixedMethodCall>
+    <RedundantCondition occurrences="1">
+      <code>assertIsArray</code>
+    </RedundantCondition>
+  </file>
+  <file src="test/LaminasAclFactoryTest.php">
+    <MissingReturnType occurrences="7">
+      <code>testFactoryWithEmptyRolesResources</code>
+      <code>testFactoryWithInvalidRole</code>
+      <code>testFactoryWithUnknownRole</code>
+      <code>testFactoryWithoutAllowOrDeny</code>
+      <code>testFactoryWithoutConfig</code>
+      <code>testFactoryWithoutLaminasAclConfig</code>
+      <code>testFactoryWithoutResources</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="7">
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+      <code>$this-&gt;container-&gt;reveal()</code>
+    </MixedArgument>
+    <MixedMethodCall occurrences="7">
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+      <code>willReturn</code>
+    </MixedMethodCall>
+    <PossiblyUndefinedMethod occurrences="7">
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+    </PossiblyUndefinedMethod>
+  </file>
+  <file src="test/LaminasAclTest.php">
+    <MissingReturnType occurrences="5">
+      <code>testConstructor</code>
+      <code>testIsGranted</code>
+      <code>testIsGrantedWithFailedRouting</code>
+      <code>testIsGrantedWithoutRouteResult</code>
+      <code>testIsNotGranted</code>
+    </MissingReturnType>
+    <MixedArgument occurrences="5">
+      <code>$this-&gt;acl-&gt;reveal()</code>
+      <code>$this-&gt;acl-&gt;reveal()</code>
+      <code>$this-&gt;acl-&gt;reveal()</code>
+      <code>$this-&gt;acl-&gt;reveal()</code>
+      <code>$this-&gt;acl-&gt;reveal()</code>
+    </MixedArgument>
+    <PossiblyInvalidMethodCall occurrences="2">
+      <code>willReturn</code>
+      <code>willReturn</code>
+    </PossiblyInvalidMethodCall>
+    <PossiblyUndefinedMethod occurrences="5">
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+      <code>reveal</code>
+    </PossiblyUndefinedMethod>
+  </file>
+</files>
