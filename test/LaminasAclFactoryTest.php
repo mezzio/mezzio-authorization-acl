@@ -7,72 +7,81 @@ namespace MezzioTest\Authorization\Acl;
 use Mezzio\Authorization\Acl\LaminasAcl;
 use Mezzio\Authorization\Acl\LaminasAclFactory;
 use Mezzio\Authorization\Exception;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Container\ContainerInterface;
 
 class LaminasAclFactoryTest extends TestCase
 {
-    use ProphecyTrait;
-
-    /** @var ContainerInterface|ObjectProphecy */
-    private $container;
+    /** @var ContainerInterface&MockObject */
+    private ContainerInterface $container;
 
     protected function setUp(): void
     {
-        $this->container = $this->prophesize(ContainerInterface::class);
+        $this->container = $this->createMock(ContainerInterface::class);
     }
 
-    public function testFactoryWithoutConfig()
+    public function testFactoryWithoutConfig(): void
     {
-        $this->container->get('config')->willReturn([]);
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn([]);
 
         $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
-        $factory($this->container->reveal());
+        $factory($this->container);
     }
 
-    public function testFactoryWithoutLaminasAclConfig()
+    public function testFactoryWithoutLaminasAclConfig(): void
     {
-        $this->container->get('config')->willReturn(['mezzio-authorization-acl' => []]);
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn(['mezzio-authorization-acl' => []]);
 
         $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
-        $factory($this->container->reveal());
+        $factory($this->container);
     }
 
-    public function testFactoryWithoutResources()
+    public function testFactoryWithoutResources(): void
     {
-        $this->container->get('config')->willReturn([
-            'mezzio-authorization-acl' => [
-                'roles' => [],
-            ],
-        ]);
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn([
+                'mezzio-authorization-acl' => [
+                    'roles' => [],
+                ],
+            ]);
 
         $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
-        $factory($this->container->reveal());
+        $factory($this->container);
     }
 
-    public function testFactoryWithEmptyRolesResources()
+    public function testFactoryWithEmptyRolesResources(): void
     {
-        $this->container->get('config')->willReturn([
-            'mezzio-authorization-acl' => [
-                'roles'     => [],
-                'resources' => [],
-            ],
-        ]);
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn([
+                'mezzio-authorization-acl' => [
+                    'roles'     => [],
+                    'resources' => [],
+                ],
+            ]);
 
         $factory    = new LaminasAclFactory();
-        $laminasAcl = $factory($this->container->reveal());
-        $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
+        $laminasAcl = $factory($this->container);
+        self::assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
 
-    public function testFactoryWithoutAllowOrDeny()
+    public function testFactoryWithoutAllowOrDeny(): void
     {
         $config = [
             'mezzio-authorization-acl' => [
@@ -89,50 +98,59 @@ class LaminasAclFactoryTest extends TestCase
                 ],
             ],
         ];
-        $this->container->get('config')->willReturn($config);
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn($config);
 
         $factory    = new LaminasAclFactory();
-        $laminasAcl = $factory($this->container->reveal());
-        $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
+        $laminasAcl = $factory($this->container);
+        self::assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
 
-    public function testFactoryWithInvalidRole()
+    public function testFactoryWithInvalidRole(): void
     {
-        $this->container->get('config')->willReturn([
-            'mezzio-authorization-acl' => [
-                'roles'       => [
-                    1 => [],
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn([
+                'mezzio-authorization-acl' => [
+                    'roles'       => [
+                        1 => [],
+                    ],
+                    'permissions' => [],
                 ],
-                'permissions' => [],
-            ],
-        ]);
+            ]);
 
         $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
-        $factory($this->container->reveal());
+        $factory($this->container);
     }
 
-    public function testFactoryWithUnknownRole()
+    public function testFactoryWithUnknownRole(): void
     {
-        $this->container->get('config')->willReturn([
-            'mezzio-authorization-acl' => [
-                'roles'     => [
-                    'administrator' => [],
+        $this->container->expects(self::once())
+            ->method('get')
+            ->willReturn('config')
+            ->willReturn([
+                'mezzio-authorization-acl' => [
+                    'roles'     => [
+                        'administrator' => [],
+                    ],
+                    'resources' => [
+                        'admin.dashboard',
+                        'admin.posts',
+                    ],
+                    'allow'     => [
+                        'editor' => ['admin.dashboard'],
+                    ],
                 ],
-                'resources' => [
-                    'admin.dashboard',
-                    'admin.posts',
-                ],
-                'allow'     => [
-                    'editor' => ['admin.dashboard'],
-                ],
-            ],
-        ]);
+            ]);
 
         $factory = new LaminasAclFactory();
 
         $this->expectException(Exception\InvalidConfigException::class);
-        $factory($this->container->reveal());
+        $factory($this->container);
     }
 }
