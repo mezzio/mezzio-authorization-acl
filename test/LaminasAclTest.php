@@ -9,85 +9,104 @@ use Mezzio\Authorization\Acl\LaminasAcl;
 use Mezzio\Authorization\Exception;
 use Mezzio\Router\Route;
 use Mezzio\Router\RouteResult;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
-use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\ServerRequestInterface;
 
 class LaminasAclTest extends TestCase
 {
-    use ProphecyTrait;
-
-    /** @var Acl|ObjectProphecy */
+    /** @var Acl&MockObject */
     private $acl;
 
     protected function setUp(): void
     {
-        $this->acl = $this->prophesize(Acl::class);
+        $this->acl = $this->createMock(Acl::class);
     }
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
-        $laminasAcl = new LaminasAcl($this->acl->reveal());
-        $this->assertInstanceOf(LaminasAcl::class, $laminasAcl);
+        $laminasAcl = new LaminasAcl($this->acl);
+        self::assertInstanceOf(LaminasAcl::class, $laminasAcl);
     }
 
-    public function testIsGrantedWithoutRouteResult()
+    public function testIsGrantedWithoutRouteResult(): void
     {
-        $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getAttribute(RouteResult::class, false)->willReturn(false);
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->expects(self::once())
+            ->method('getAttribute')
+            ->with(RouteResult::class, false)
+            ->willReturn(false);
 
-        $laminasAcl = new LaminasAcl($this->acl->reveal());
+        $laminasAcl = new LaminasAcl($this->acl);
 
         $this->expectException(Exception\RuntimeException::class);
-        $laminasAcl->isGranted('foo', $request->reveal());
+        $laminasAcl->isGranted('foo', $request);
     }
 
-    public function testIsGranted()
+    public function testIsGranted(): void
     {
         $routeResult = $this->getSuccessRouteResult('home');
 
-        $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getAttribute(RouteResult::class, false)->willReturn($routeResult);
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->expects(self::once())
+            ->method('getAttribute')
+            ->with(RouteResult::class, false)
+            ->willReturn($routeResult);
 
-        $this->acl->isAllowed('foo', 'home')->willReturn(true);
-        $laminasAcl = new LaminasAcl($this->acl->reveal());
+        $this->acl->expects(self::once())
+            ->method('isAllowed')
+            ->with('foo', 'home')
+            ->willReturn(true);
 
-        $this->assertTrue($laminasAcl->isGranted('foo', $request->reveal()));
+        $laminasAcl = new LaminasAcl($this->acl);
+
+        self::assertTrue($laminasAcl->isGranted('foo', $request));
     }
 
-    public function testIsNotGranted()
+    public function testIsNotGranted(): void
     {
         $routeResult = $this->getSuccessRouteResult('home');
 
-        $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getAttribute(RouteResult::class, false)->willReturn($routeResult);
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->expects(self::once())
+            ->method('getAttribute')
+            ->with(RouteResult::class, false)
+            ->willReturn($routeResult);
 
-        $this->acl->isAllowed('foo', 'home')->willReturn(false);
-        $laminasAcl = new LaminasAcl($this->acl->reveal());
+        $this->acl->expects(self::once())
+            ->method('isAllowed')
+            ->with('foo', 'home')
+            ->willReturn(false);
 
-        $this->assertFalse($laminasAcl->isGranted('foo', $request->reveal()));
+        $laminasAcl = new LaminasAcl($this->acl);
+
+        self::assertFalse($laminasAcl->isGranted('foo', $request));
     }
 
-    public function testIsGrantedWithFailedRouting()
+    public function testIsGrantedWithFailedRouting(): void
     {
         $routeResult = $this->getFailureRouteResult(Route::HTTP_METHOD_ANY);
 
-        $request = $this->prophesize(ServerRequestInterface::class);
-        $request->getAttribute(RouteResult::class, false)->willReturn($routeResult);
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->expects(self::once())
+            ->method('getAttribute')
+            ->with(RouteResult::class, false)
+            ->willReturn($routeResult);
 
-        $laminasAcl = new LaminasAcl($this->acl->reveal());
+        $laminasAcl = new LaminasAcl($this->acl);
 
-        $result = $laminasAcl->isGranted('foo', $request->reveal());
-        $this->assertTrue($result);
+        $result = $laminasAcl->isGranted('foo', $request);
+        self::assertTrue($result);
     }
 
     private function getSuccessRouteResult(string $routeName): RouteResult
     {
-        $route = $this->prophesize(Route::class);
-        $route->getName()->willReturn($routeName);
+        $route = $this->createMock(Route::class);
+        $route->expects(self::atLeast(1))
+            ->method('getName')
+            ->willReturn($routeName);
 
-        return RouteResult::fromRoute($route->reveal());
+        return RouteResult::fromRoute($route);
     }
 
     private function getFailureRouteResult(?array $methods): RouteResult

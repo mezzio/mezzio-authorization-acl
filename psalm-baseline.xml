@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.24.0@06dd975cb55d36af80f242561738f16c5f58264f">
+<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
   <file src="src/ConfigProvider.php">
     <MixedArrayOffset occurrences="1"/>
     <UndefinedClass occurrences="1">
@@ -58,11 +58,7 @@
     <InvalidFunctionCall occurrences="1">
       <code>$configProvider()</code>
     </InvalidFunctionCall>
-    <MissingReturnType occurrences="2">
-      <code>testReturnedArrayContainsDependencies</code>
-      <code>testServicesDefinedInConfigProvider</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="7">
+    <MixedArgument occurrences="4">
       <code>$configProvider()</code>
       <code>$config['dependencies']</code>
       <code>$factory</code>
@@ -93,70 +89,5 @@
     <RedundantCondition occurrences="1">
       <code>assertIsArray</code>
     </RedundantCondition>
-  </file>
-  <file src="test/LaminasAclFactoryTest.php">
-    <MissingReturnType occurrences="7">
-      <code>testFactoryWithEmptyRolesResources</code>
-      <code>testFactoryWithInvalidRole</code>
-      <code>testFactoryWithUnknownRole</code>
-      <code>testFactoryWithoutAllowOrDeny</code>
-      <code>testFactoryWithoutConfig</code>
-      <code>testFactoryWithoutLaminasAclConfig</code>
-      <code>testFactoryWithoutResources</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="7">
-      <code>$this-&gt;container-&gt;reveal()</code>
-      <code>$this-&gt;container-&gt;reveal()</code>
-      <code>$this-&gt;container-&gt;reveal()</code>
-      <code>$this-&gt;container-&gt;reveal()</code>
-      <code>$this-&gt;container-&gt;reveal()</code>
-      <code>$this-&gt;container-&gt;reveal()</code>
-      <code>$this-&gt;container-&gt;reveal()</code>
-    </MixedArgument>
-    <MixedMethodCall occurrences="7">
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod occurrences="7">
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-    </PossiblyUndefinedMethod>
-  </file>
-  <file src="test/LaminasAclTest.php">
-    <MissingReturnType occurrences="5">
-      <code>testConstructor</code>
-      <code>testIsGranted</code>
-      <code>testIsGrantedWithFailedRouting</code>
-      <code>testIsGrantedWithoutRouteResult</code>
-      <code>testIsNotGranted</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="5">
-      <code>$this-&gt;acl-&gt;reveal()</code>
-      <code>$this-&gt;acl-&gt;reveal()</code>
-      <code>$this-&gt;acl-&gt;reveal()</code>
-      <code>$this-&gt;acl-&gt;reveal()</code>
-      <code>$this-&gt;acl-&gt;reveal()</code>
-    </MixedArgument>
-    <PossiblyInvalidMethodCall occurrences="2">
-      <code>willReturn</code>
-      <code>willReturn</code>
-    </PossiblyInvalidMethodCall>
-    <PossiblyUndefinedMethod occurrences="5">
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-      <code>reveal</code>
-    </PossiblyUndefinedMethod>
   </file>
 </files>
