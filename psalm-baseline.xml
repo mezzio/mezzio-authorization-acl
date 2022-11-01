@@ -58,14 +58,9 @@
     <InvalidFunctionCall occurrences="1">
       <code>$configProvider()</code>
     </InvalidFunctionCall>
-    <MixedArgument occurrences="4">
+    <MixedArgument occurrences="2">
       <code>$configProvider()</code>
       <code>$config['dependencies']</code>
-      <code>$factory</code>
-      <code>$name</code>
-      <code>$name</code>
-      <code>$name</code>
-      <code>$name</code>
     </MixedArgument>
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$dependencies</code>
@@ -77,15 +72,10 @@
     <MixedArrayAssignment occurrences="1">
       <code>$config['dependencies']['services']</code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="4">
-      <code>$factory</code>
+    <MixedAssignment occurrences="2">
       <code>$json</code>
-      <code>$name</code>
       <code>$package</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
-      <code>new $package['extra']['laminas']['config-provider']()</code>
-    </MixedMethodCall>
     <RedundantCondition occurrences="1">
       <code>assertIsArray</code>
     </RedundantCondition>
