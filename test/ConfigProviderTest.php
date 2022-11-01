@@ -10,6 +10,7 @@ use Mezzio\Authorization\Acl\LaminasAcl;
 use PHPUnit\Framework\TestCase;
 
 use function array_merge_recursive;
+use function class_exists;
 use function file_get_contents;
 use function json_decode;
 use function sprintf;
@@ -54,7 +55,11 @@ class ConfigProviderTest extends TestCase
         );
         foreach ($json['packages'] as $package) {
             if (isset($package['extra']['laminas']['config-provider'])) {
-                $configProvider = new $package['extra']['laminas']['config-provider']();
+                $providerClass = $package['extra']['laminas']['config-provider'];
+                self::assertIsString($providerClass);
+                self::assertTrue(class_exists($providerClass));
+                /** @psalm-suppress MixedMethodCall */
+                $configProvider = new $providerClass();
                 $config         = array_merge_recursive($config, $configProvider());
             }
         }
@@ -66,6 +71,8 @@ class ConfigProviderTest extends TestCase
 
         $dependencies = $this->provider->getDependencies();
         foreach ($dependencies['factories'] as $name => $factory) {
+            self::assertIsString($factory);
+            self::assertIsString($name);
             self::assertTrue($container->has($name), sprintf('Container does not contain service %s', $name));
             self::assertIsObject(
                 $container->get($name),
