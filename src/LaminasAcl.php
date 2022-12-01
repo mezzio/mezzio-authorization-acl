@@ -29,7 +29,7 @@ class LaminasAcl implements AuthorizationInterface
     public function isGranted(string $role, ServerRequestInterface $request): bool
     {
         $routeResult = $request->getAttribute(RouteResult::class, false);
-        if (false === $routeResult) {
+        if (! $routeResult instanceof RouteResult) {
             throw new Exception\RuntimeException(sprintf(
                 'The %s attribute is missing in the request; cannot perform ACL authorization checks',
                 RouteResult::class
