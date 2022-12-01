@@ -1,57 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
-  <file src="src/ConfigProvider.php">
-    <MixedArrayOffset occurrences="1"/>
-    <UndefinedClass occurrences="1">
-      <code>ZendAcl</code>
-    </UndefinedClass>
-  </file>
+<files psalm-version="5.0.0@4e177bf0c9f03c17d2fbfd83b7cc9c47605274d8">
   <file src="src/LaminasAcl.php">
-    <MixedArgument occurrences="1">
+    <PossiblyFalseArgument occurrences="1">
       <code>$routeName</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="2">
-      <code>$routeName</code>
-      <code>$routeResult</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="2">
-      <code>getMatchedRouteName</code>
-      <code>isFailure</code>
-    </MixedMethodCall>
+    </PossiblyFalseArgument>
   </file>
   <file src="src/LaminasAclFactory.php">
     <InvalidCatch occurrences="4"/>
-    <InvalidScalarArgument occurrences="4">
-      <code>$e-&gt;getCode()</code>
-      <code>$e-&gt;getCode()</code>
-      <code>$e-&gt;getCode()</code>
-      <code>$e-&gt;getCode()</code>
-    </InvalidScalarArgument>
-    <MixedArgument occurrences="8">
+    <MixedArgument occurrences="4">
       <code>$config['allow'] ?? []</code>
       <code>$config['deny'] ?? []</code>
       <code>$config['resources']</code>
       <code>$config['roles']</code>
-      <code>$parent</code>
-      <code>$parent</code>
-      <code>$parents</code>
-      <code>$resource</code>
     </MixedArgument>
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$role</code>
-    </MixedArgumentTypeCoercion>
     <MixedArrayAccess occurrences="4">
       <code>$config['allow']</code>
       <code>$config['deny']</code>
       <code>$config['resources']</code>
       <code>$config['roles']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="5">
+    <MixedAssignment occurrences="1">
       <code>$config</code>
-      <code>$parent</code>
-      <code>$parents</code>
-      <code>$resource</code>
-      <code>$resources</code>
     </MixedAssignment>
   </file>
   <file src="test/ConfigProviderTest.php">
@@ -65,12 +34,15 @@
     <MixedArgumentTypeCoercion occurrences="1">
       <code>$dependencies</code>
     </MixedArgumentTypeCoercion>
-    <MixedArrayAccess occurrences="2">
+    <MixedArrayAccess occurrences="4">
       <code>$json['packages']</code>
       <code>$package['extra']</code>
+      <code>$package['extra']['laminas']</code>
+      <code>$package['extra']['laminas']['config-provider']</code>
     </MixedArrayAccess>
-    <MixedArrayAssignment occurrences="1">
+    <MixedArrayAssignment occurrences="2">
       <code>$config['dependencies']['services']</code>
+      <code>$config['dependencies']['services']['config']</code>
     </MixedArrayAssignment>
     <MixedAssignment occurrences="2">
       <code>$json</code>

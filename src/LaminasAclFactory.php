@@ -6,6 +6,8 @@ namespace Mezzio\Authorization\Acl;
 
 use Laminas\Permissions\Acl\Acl;
 use Laminas\Permissions\Acl\Exception\ExceptionInterface as AclExceptionInterface;
+use Laminas\Permissions\Acl\Resource\ResourceInterface;
+use Laminas\Permissions\Acl\Role\RoleInterface;
 use Mezzio\Authorization\AuthorizationInterface;
 use Mezzio\Authorization\Exception;
 use Psr\Container\ContainerInterface;
@@ -49,6 +51,7 @@ class LaminasAclFactory
 
     /**
      * @throws Exception\InvalidConfigException
+     * @param array<string, list<RoleInterface|string>> $roles
      */
     private function injectRoles(Acl $acl, array $roles): void
     {
@@ -58,20 +61,21 @@ class LaminasAclFactory
                     try {
                         $acl->addRole($parent);
                     } catch (AclExceptionInterface $e) {
-                        throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
+                        throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
                     }
                 }
             }
             try {
                 $acl->addRole($role, $parents);
             } catch (AclExceptionInterface $e) {
-                throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
+                throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
             }
         }
     }
 
     /**
      * @throws Exception\InvalidConfigException
+     * @param list<ResourceInterface|string> $resources
      */
     private function injectResources(Acl $acl, array $resources): void
     {
@@ -79,13 +83,14 @@ class LaminasAclFactory
             try {
                 $acl->addResource($resource);
             } catch (AclExceptionInterface $e) {
-                throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
+                throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
             }
         }
     }
 
     /**
      * @throws Exception\InvalidConfigException
+     * @param array<string, ResourceInterface|string|list<ResourceInterface|string>> $permissions
      */
     private function injectPermissions(Acl $acl, array $permissions, string $type): void
     {
@@ -98,9 +103,11 @@ class LaminasAclFactory
 
         foreach ($permissions as $role => $resources) {
             try {
-                $acl->$type($role, $resources);
+                $type === 'allow'
+                    ? $acl->allow($role, $resources)
+                    : $acl->deny($role, $resources);
             } catch (AclExceptionInterface $e) {
-                throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
+                throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
             }
         }
     }
