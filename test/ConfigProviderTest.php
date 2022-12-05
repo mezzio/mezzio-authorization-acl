@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MezzioTest\Authorization\Acl;
 
+use Laminas\ServiceManager\ConfigInterface;
 use Laminas\ServiceManager\ServiceManager;
 use Mezzio\Authorization\Acl\ConfigProvider;
 use Mezzio\Authorization\Acl\LaminasAcl;
@@ -15,6 +16,7 @@ use function file_get_contents;
 use function json_decode;
 use function sprintf;
 
+/** @psalm-import-type ServiceManagerConfigurationType from ConfigInterface */
 class ConfigProviderTest extends TestCase
 {
     private ConfigProvider $provider;
@@ -64,10 +66,15 @@ class ConfigProviderTest extends TestCase
             }
         }
 
-        $config['dependencies']['services']['config'] = [
+        self::assertIsArray($config['dependencies']);
+        /** @psalm-var ServiceManagerConfigurationType $dependencies */
+        $dependencies = $config['dependencies'];
+        unset($dependencies['services']['config']);
+        $dependencies['services']['config'] = [
             'mezzio-authorization-acl' => ['roles' => [], 'resources' => []],
         ];
-        $container                                    = $this->getContainer($config['dependencies']);
+
+        $container = $this->getContainer($dependencies);
 
         $dependencies = $this->provider->getDependencies();
         foreach ($dependencies['factories'] as $name => $factory) {
@@ -81,6 +88,7 @@ class ConfigProviderTest extends TestCase
         }
     }
 
+    /** @param ServiceManagerConfigurationType $dependencies */
     private function getContainer(array $dependencies): ServiceManager
     {
         return new ServiceManager($dependencies);

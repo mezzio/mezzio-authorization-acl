@@ -61,14 +61,14 @@ class LaminasAclFactory
                     try {
                         $acl->addRole($parent);
                     } catch (AclExceptionInterface $e) {
-                        throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
+                        throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
                     }
                 }
             }
             try {
                 $acl->addRole($role, $parents);
             } catch (AclExceptionInterface $e) {
-                throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
+                throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
             }
         }
     }
@@ -83,7 +83,7 @@ class LaminasAclFactory
             try {
                 $acl->addResource($resource);
             } catch (AclExceptionInterface $e) {
-                throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
+                throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
             }
         }
     }
@@ -107,7 +107,7 @@ class LaminasAclFactory
                     ? $acl->allow($role, $resources)
                     : $acl->deny($role, $resources);
             } catch (AclExceptionInterface $e) {
-                throw new Exception\InvalidConfigException($e->getMessage(), (int) $e->getCode(), $e);
+                throw new Exception\InvalidConfigException($e->getMessage(), $e->getCode(), $e);
             }
         }
     }
