@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.0.0@4e177bf0c9f03c17d2fbfd83b7cc9c47605274d8">
+<files psalm-version="5.1.0@4defa177c89397c5e14737a80fe4896584130674">
   <file src="src/LaminasAcl.php">
     <PossiblyFalseArgument occurrences="1">
       <code>$routeName</code>
     </PossiblyFalseArgument>
   </file>
   <file src="src/LaminasAclFactory.php">
-    <InvalidCatch occurrences="4"/>
     <MixedArgument occurrences="4">
       <code>$config['allow'] ?? []</code>
       <code>$config['deny'] ?? []</code>
@@ -27,23 +26,15 @@
     <InvalidFunctionCall occurrences="1">
       <code>$configProvider()</code>
     </InvalidFunctionCall>
-    <MixedArgument occurrences="2">
+    <MixedArgument occurrences="1">
       <code>$configProvider()</code>
-      <code>$config['dependencies']</code>
     </MixedArgument>
-    <MixedArgumentTypeCoercion occurrences="1">
-      <code>$dependencies</code>
-    </MixedArgumentTypeCoercion>
     <MixedArrayAccess occurrences="4">
       <code>$json['packages']</code>
       <code>$package['extra']</code>
       <code>$package['extra']['laminas']</code>
       <code>$package['extra']['laminas']['config-provider']</code>
     </MixedArrayAccess>
-    <MixedArrayAssignment occurrences="2">
-      <code>$config['dependencies']['services']</code>
-      <code>$config['dependencies']['services']['config']</code>
-    </MixedArrayAssignment>
     <MixedAssignment occurrences="2">
       <code>$json</code>
       <code>$package</code>
