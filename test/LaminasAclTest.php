@@ -109,6 +109,7 @@ class LaminasAclTest extends TestCase
         return RouteResult::fromRoute($route);
     }
 
+    /** @param list<string>|null $methods */
     private function getFailureRouteResult(?array $methods): RouteResult
     {
         return RouteResult::fromRouteFailure($methods);
