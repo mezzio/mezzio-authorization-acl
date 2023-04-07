@@ -11,8 +11,11 @@ use Mezzio\Authorization\Acl\LaminasAcl;
 use PHPUnit\Framework\TestCase;
 
 use function array_merge_recursive;
+use function assert;
 use function class_exists;
 use function file_get_contents;
+use function is_array;
+use function is_callable;
 use function json_decode;
 use function sprintf;
 
@@ -26,18 +29,10 @@ class ConfigProviderTest extends TestCase
         $this->provider = new ConfigProvider();
     }
 
-    public function testInvocationReturnsArray(): array
+    public function testReturnedArrayContainsDependencies(): void
     {
-        $config = ($this->provider)();
-        self::assertIsArray($config);
-        return $config;
-    }
+        $config = $this->provider->__invoke();
 
-    /**
-     * @depends testInvocationReturnsArray
-     */
-    public function testReturnedArrayContainsDependencies(array $config): void
-    {
         self::assertArrayHasKey('dependencies', $config);
         self::assertIsArray($config['dependencies']);
         self::assertArrayHasKey('factories', $config['dependencies']);
@@ -55,15 +50,22 @@ class ConfigProviderTest extends TestCase
             file_get_contents(__DIR__ . '/../composer.lock'),
             true
         );
+        assert(is_array($json) && is_array($json['packages'] ?? null));
         foreach ($json['packages'] as $package) {
-            if (isset($package['extra']['laminas']['config-provider'])) {
-                $providerClass = $package['extra']['laminas']['config-provider'];
-                self::assertIsString($providerClass);
-                self::assertTrue(class_exists($providerClass));
-                /** @psalm-suppress MixedMethodCall */
-                $configProvider = new $providerClass();
-                $config         = array_merge_recursive($config, $configProvider());
+            assert(is_array($package));
+            if (! isset($package['extra']['laminas']['config-provider'])) {
+                continue;
             }
+
+            $providerClass = $package['extra']['laminas']['config-provider'];
+            self::assertIsString($providerClass);
+            self::assertTrue(class_exists($providerClass));
+            /** @psalm-suppress MixedMethodCall */
+            $configProvider = new $providerClass();
+            assert(is_callable($configProvider));
+            $data = $configProvider();
+            assert(is_array($data));
+            $config = array_merge_recursive($config, $data);
         }
 
         self::assertIsArray($config['dependencies']);
