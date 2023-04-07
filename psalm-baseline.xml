@@ -1,46 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.1.0@4defa177c89397c5e14737a80fe4896584130674">
+<files psalm-version="5.9.0@8b9ad1eb9e8b7d3101f949291da2b9f7767cd163">
   <file src="src/LaminasAcl.php">
-    <PossiblyFalseArgument occurrences="1">
+    <PossiblyFalseArgument>
       <code>$routeName</code>
     </PossiblyFalseArgument>
   </file>
   <file src="src/LaminasAclFactory.php">
-    <MixedArgument occurrences="4">
-      <code>$config['allow'] ?? []</code>
-      <code>$config['deny'] ?? []</code>
-      <code>$config['resources']</code>
-      <code>$config['roles']</code>
+    <MixedArgument>
+      <code><![CDATA[$config['allow'] ?? []]]></code>
+      <code><![CDATA[$config['deny'] ?? []]]></code>
+      <code><![CDATA[$config['resources']]]></code>
+      <code><![CDATA[$config['roles']]]></code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="4">
-      <code>$config['allow']</code>
-      <code>$config['deny']</code>
-      <code>$config['resources']</code>
-      <code>$config['roles']</code>
+    <MixedArrayAccess>
+      <code><![CDATA[$config['allow']]]></code>
+      <code><![CDATA[$config['deny']]]></code>
+      <code><![CDATA[$config['resources']]]></code>
+      <code><![CDATA[$config['roles']]]></code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$config</code>
     </MixedAssignment>
   </file>
   <file src="test/ConfigProviderTest.php">
-    <InvalidFunctionCall occurrences="1">
-      <code>$configProvider()</code>
-    </InvalidFunctionCall>
-    <MixedArgument occurrences="1">
-      <code>$configProvider()</code>
-    </MixedArgument>
-    <MixedArrayAccess occurrences="4">
-      <code>$json['packages']</code>
-      <code>$package['extra']</code>
-      <code>$package['extra']['laminas']</code>
-      <code>$package['extra']['laminas']['config-provider']</code>
+    <MixedArrayAccess>
+      <code><![CDATA[$package['extra']['laminas']['config-provider']]]></code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="2">
-      <code>$json</code>
-      <code>$package</code>
-    </MixedAssignment>
-    <RedundantCondition occurrences="1">
-      <code>assertIsArray</code>
-    </RedundantCondition>
   </file>
 </files>
