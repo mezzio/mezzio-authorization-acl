@@ -18,8 +18,8 @@ Through the specification and use of an ACL, an application may control how
 roles are granted access to resources. For instance, in a web application a
 *resource* can be a page, a portion of a view, a route, etc. A *role* can vary
 based on the context in which the request is made: it could be the client
-identity sent with an API request; whether the users is an _anonymous guest_ or a
-_registered user_ of the site; etc.
+identity sent with an API request; whether the users is an *anonymous guest* or a
+*registered user* of the site; etc.
 
 ## Configure an ACL system
 
