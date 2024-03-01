@@ -69,7 +69,7 @@ class ConfigProviderTest extends TestCase
 
         self::assertIsArray($config['dependencies']);
         /** @psalm-var ServiceManagerConfiguration $dependencies */
-        $dependencies = $config['dependencies'];
+        $dependencies               = $config['dependencies'];
         $dependencies['services'] ??= [];
         if (isset($dependencies['services']['config'])) {
             unset($dependencies['services']['config']);
