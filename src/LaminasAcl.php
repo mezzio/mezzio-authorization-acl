@@ -14,11 +14,8 @@ use function sprintf;
 
 class LaminasAcl implements AuthorizationInterface
 {
-    private Acl $acl;
-
-    public function __construct(Acl $acl)
+    public function __construct(private readonly Acl $acl)
     {
-        $this->acl = $acl;
     }
 
     /**
