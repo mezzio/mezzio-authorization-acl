@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
-class LaminasAclTest extends TestCase
+final class LaminasAclTest extends TestCase
 {
     /** @var Acl&MockObject */
     private $acl;

@@ -15,6 +15,7 @@ use Psr\Container\ContainerInterface;
 use function in_array;
 use function sprintf;
 
+/** @final */
 class LaminasAclFactory
 {
     /**
