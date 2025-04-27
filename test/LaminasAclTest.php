@@ -12,8 +12,9 @@ use Mezzio\Router\RouteResult;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
-class LaminasAclTest extends TestCase
+final class LaminasAclTest extends TestCase
 {
     /** @var Acl&MockObject */
     private $acl;
@@ -101,10 +102,12 @@ class LaminasAclTest extends TestCase
 
     private function getSuccessRouteResult(string $routeName): RouteResult
     {
-        $route = $this->createMock(Route::class);
-        $route->expects(self::atLeast(1))
-            ->method('getName')
-            ->willReturn($routeName);
+        $route = new Route(
+            '/foo',
+            $this->createMock(MiddlewareInterface::class),
+            null,
+            $routeName,
+        );
 
         return RouteResult::fromRoute($route);
     }

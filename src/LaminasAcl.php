@@ -12,6 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 use function sprintf;
 
+/** @final */
 class LaminasAcl implements AuthorizationInterface
 {
     public function __construct(private readonly Acl $acl)
